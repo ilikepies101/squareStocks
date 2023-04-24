@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Stocks</string>
+    <plurals name="shares">
+        <item quantity="one">Share</item>
+        <item quantity="other">Shares</item>
+    </plurals>
 </resources>

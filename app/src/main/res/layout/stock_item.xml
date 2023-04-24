@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/medium_space">
+
+            <TextView
+                android:id="@+id/ticker"
+                android:textSize="@dimen/large_text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/name"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="?attr/editTextColor"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="AAPL"/>
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/ticker"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="?attr/editTextColor"
+                app:layout_constraintVertical_chainStyle="packed"
+                android:textSize="@dimen/medium_text_size"
+                tools:text="Apple Inc."/>
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/large_text_size"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/currency"
+                app:layout_constraintEnd_toStartOf="@id/quantity_divider"
+                app:layout_constraintVertical_chainStyle="packed"
+                android:layout_marginEnd="@dimen/small_space"
+                android:textColor="?attr/editTextColor"
+                tools:text="14.00"/>
+
+            <TextView
+                android:id="@+id/currency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/price"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/price"
+                app:layout_constraintVertical_chainStyle="packed"
+                android:textSize="@dimen/small_text_size"
+                tools:text="USD"/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/currency_barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="currency,price"
+                app:barrierDirection="end"
+                tools:ignore="MissingConstraints" />
+
+            <View
+                android:id="@+id/quantity_divider"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toEndOf="@id/currency_barrier"
+                app:layout_constraintEnd_toStartOf="@id/quantity"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/currency"
+                android:background="@color/black" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="start"
+                app:constraint_referenced_ids="quantity,quantity_label" />
+
+            <TextView
+                android:id="@+id/quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/large_text_size"
+                app:layout_constraintStart_toEndOf="@id/quantity_divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/quantity_label"
+                app:layout_constraintVertical_chainStyle="packed"
+                android:layout_marginStart="@dimen/small_space"
+                tools:text="14.1"/>
+
+            <TextView
+                android:id="@+id/quantity_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_text_size"
+                app:layout_constraintTop_toBottomOf="@id/quantity"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/quantity_divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Shares"
+                />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/quantity_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:visibility="visible"
+                app:constraint_referenced_ids="quantity_divider,quantity,quantity_label" />
+
+            <TextView
+                android:id="@+id/timestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/currency"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/small_space"
+                android:textSize="@dimen/small_text_size"
+                android:textColor="?android:attr/textColorTertiary"
+                tools:text="Last updated on Mar 11, 2022 10:35:59 AM"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

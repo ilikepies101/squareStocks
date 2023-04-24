@@ -5,6 +5,14 @@ buildscript {
         okhttpVersion = "4.10.0"
         retrofitVersion = "2.9.0"
     }
+    repositories {
+        // other repositories...
+        mavenCentral()
+    }
+    dependencies {
+        // other plugins...
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.45'
+    }
 }
 
 plugins {
