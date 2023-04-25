@@ -29,7 +29,6 @@ class StockRepositoryImpl(
             dao.insertStocks(remoteStocks.stocks.map { it.toStockEntity() })
 
         } catch (e: HttpException) {
-            //todo: add string resource.
             emit(Resource.Error("An http exception occurred", stocks))
         } catch (e: IOException) {
             emit(Resource.Error("An exception occurred, please check your internet connection.", stocks))

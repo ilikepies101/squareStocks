@@ -1,5 +1,4 @@
 package com.example.stocks.domain.model
-
 data class Stock (
     val currency: String,
     val currentPriceCents: Int,

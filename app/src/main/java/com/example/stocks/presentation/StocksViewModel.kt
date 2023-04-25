@@ -28,21 +28,24 @@ class StocksViewModel @Inject constructor(
                 when (result) {
                     is Resource.Success -> {
                         _state.value = _state.value.copy(
-                            stocks = result.data ?: emptyList(),
+                            watchList = result.data?.filter { it.quantity == null } ?: emptyList(),
+                            stocks = result.data?.filter { it.quantity != null } ?: emptyList(),
                             isLoading = false
                         )
                     }
 
                     is Resource.Loading -> {
                         _state.value = _state.value.copy(
-                            stocks = result.data ?: emptyList(),
+                            watchList = result.data?.filter { it.quantity == null } ?: emptyList(),
+                            stocks = result.data?.filter { it.quantity != null } ?: emptyList(),
                             isLoading = true
                         )
                     }
 
                     is Resource.Error -> {
                         _state.value = _state.value.copy(
-                            stocks = result.data ?: emptyList(),
+                            watchList = result.data?.filter { it.quantity == null } ?: emptyList(),
+                            stocks = result.data?.filter { it.quantity != null } ?: emptyList(),
                             isLoading = false
                         )
                     }

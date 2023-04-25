@@ -3,17 +3,12 @@ package com.example.stocks
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.stocks.R
 import com.example.stocks.presentation.StocksViewModel
 import com.example.stocks.presentation.adapter.StockAdapter
-import com.example.stocks.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -31,7 +26,7 @@ class MainActivity : AppCompatActivity() {
                     return@collectLatest
                 }
 
-                adapter.insert(state.stocks)
+                adapter.insert(state.stocks, state.watchList)
             }
         }
 
