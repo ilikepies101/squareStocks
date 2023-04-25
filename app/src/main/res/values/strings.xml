@@ -4,4 +4,10 @@
         <item quantity="one">Share</item>
         <item quantity="other">Shares</item>
     </plurals>
+    <string name="last_updated_text">Last updated: %1$s</string>
+    <string name="share_price">💰 Price</string>
+    <string name="quantity_label">✨Shares</string>
+    <string name="company_details">🏢 Company details</string>
+
+    <string name="buy">Buy</string>
 </resources>

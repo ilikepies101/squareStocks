@@ -16,126 +16,129 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/medium_space">
+            android:paddingHorizontal="@dimen/medium_space"
+            android:paddingVertical="@dimen/small_space">
 
-            <TextView
-                android:id="@+id/ticker"
-                android:textSize="@dimen/large_text_size"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/name"
-                app:layout_constraintStart_toStartOf="parent"
-                android:textColor="?attr/editTextColor"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:text="AAPL"/>
+                <TextView
+                    android:id="@+id/company_details"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/company_details_section"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    style="@style/header"
+                    android:text="@string/company_details" />
 
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/ticker"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:textColor="?attr/editTextColor"
-                app:layout_constraintVertical_chainStyle="packed"
-                android:textSize="@dimen/medium_text_size"
-                tools:text="Apple Inc."/>
+                <TextView
+                    android:id="@+id/ticker"
+                    android:textSize="@dimen/large_text_size"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/company_details"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColor="?attr/colorPrimary"
+                    app:layout_constraintEnd_toStartOf="@id/company_details_section"
+                    android:layout_marginTop="@dimen/xsmall_space"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:ellipsize="end"
+                    tools:text="AAPL"/>
 
-            <TextView
-                android:id="@+id/price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/large_text_size"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/currency"
-                app:layout_constraintEnd_toStartOf="@id/quantity_divider"
-                app:layout_constraintVertical_chainStyle="packed"
-                android:layout_marginEnd="@dimen/small_space"
-                android:textColor="?attr/editTextColor"
-                tools:text="14.00"/>
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="@dimen/medium_text_size"
+                    app:layout_constraintEnd_toStartOf="@id/company_details_section"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ticker"
+                    tools:text="Vanguard Total Stock Market" />
 
-            <TextView
-                android:id="@+id/currency"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/price"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@id/price"
-                app:layout_constraintVertical_chainStyle="packed"
-                android:textSize="@dimen/small_text_size"
-                tools:text="USD"/>
-
-            <androidx.constraintlayout.widget.Barrier
-                android:id="@+id/currency_barrier"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:constraint_referenced_ids="currency,price"
-                app:barrierDirection="end"
-                tools:ignore="MissingConstraints" />
-
-            <View
-                android:id="@+id/quantity_divider"
-                android:layout_width="1dp"
-                android:layout_height="0dp"
-                android:orientation="vertical"
-                app:layout_constraintStart_toEndOf="@id/currency_barrier"
-                app:layout_constraintEnd_toStartOf="@id/quantity"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/currency"
-                android:background="@color/black" />
-
-            <androidx.constraintlayout.widget.Barrier
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:barrierDirection="start"
-                app:constraint_referenced_ids="quantity,quantity_label" />
-
-            <TextView
-                android:id="@+id/quantity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/large_text_size"
-                app:layout_constraintStart_toEndOf="@id/quantity_divider"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/quantity_label"
-                app:layout_constraintVertical_chainStyle="packed"
-                android:layout_marginStart="@dimen/small_space"
-                tools:text="14.1"/>
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/company_details_section"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent=".4" />
 
             <TextView
                 android:id="@+id/quantity_label"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/small_text_size"
-                app:layout_constraintTop_toBottomOf="@id/quantity"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/quantity_divider"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:text="Shares"
-                />
+                style="@style/header"
+                android:gravity="center"
+                tools:visibility="visible"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/price_section"
+                app:layout_constraintStart_toStartOf="@id/company_details_section"
+                android:text="@string/quantity_label" />
+
+            <TextView
+                android:id="@+id/quantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/large_text_size"
+                android:textColor="?attr/colorPrimary"
+                tools:visibility="visible"
+                app:layout_constraintTop_toTopOf="@id/ticker"
+                app:layout_constraintEnd_toEndOf="@id/price_section"
+                app:layout_constraintStart_toStartOf="@id/company_details_section"
+                android:gravity="center"
+                tools:text="5"/>
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/quantity_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:visibility="visible"
-                app:constraint_referenced_ids="quantity_divider,quantity,quantity_label" />
+                app:constraint_referenced_ids="quantity_label,quantity"
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/price_section"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".6" />
+
+                <TextView
+                    android:id="@+id/price_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    style="@style/header"
+                    app:layout_constraintEnd_toEndOf="@+id/price"
+                    app:layout_constraintTop_toTopOf="@id/company_details"
+                    android:text="@string/share_price" />
+
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="@dimen/large_text_size"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/price_section"
+                    app:layout_constraintTop_toTopOf="@id/ticker"
+                    tools:text="$1,2648,000.00" />
 
             <TextView
                 android:id="@+id/timestamp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/colorTertiary"
+                android:textSize="@dimen/xsmall_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/currency"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="@dimen/small_space"
-                android:textSize="@dimen/small_text_size"
-                android:textColor="?android:attr/textColorTertiary"
-                tools:text="Last updated on Mar 11, 2022 10:35:59 AM"/>
-
+                tools:text="Last updated on Mar 11, 2022 10:35:59 AM" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.cardview.widget.CardView>
 </layout>
