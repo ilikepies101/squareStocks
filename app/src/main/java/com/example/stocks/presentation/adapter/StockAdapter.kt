@@ -50,7 +50,7 @@ class StockAdapter: RecyclerView.Adapter<ViewHolder>() {
     }
 
     override fun getItemCount() =
-        myStocks.size - 1 + myWatchlist.size - 1 + myStocksHeaderCount + myWatchlistHeaderCount
+        myStocks.size + myWatchlist.size + myStocksHeaderCount + myWatchlistHeaderCount
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val context = holder.itemView.context
@@ -64,10 +64,10 @@ class StockAdapter: RecyclerView.Adapter<ViewHolder>() {
         }
 
         (holder as? StockViewHolder)?.run {
-            val currentItem = if (position < myStocks.size) {
-                myStocks[position - myStocksHeaderCount]
+            val currentItem = if (position <= myStocks.size) {
+                myStocks[position - 1]
             } else {
-                myWatchlist[position - myStocks.size - 1]
+                myWatchlist[position - myStocks.size - myStocksHeaderCount - 1]
             }
 
             currentItem.quantity?.let { quantityAmount ->
@@ -92,7 +92,7 @@ class StockAdapter: RecyclerView.Adapter<ViewHolder>() {
         myStocksHeaderCount = if (stocks.isEmpty()) 0 else 1
         myWatchlistHeaderCount = if (watchList.isEmpty()) 0 else 1
 
-        notifyItemRangeInserted(0, stocks.size)
+        notifyItemRangeInserted(0, stocks.size + myStocksHeaderCount + myWatchlist.size + myWatchlistHeaderCount)
     }
 
     /**
@@ -106,12 +106,12 @@ class StockAdapter: RecyclerView.Adapter<ViewHolder>() {
         if (myStocks.isNotEmpty()) {
             if (position == 0) {
                 return ViewType.MY_STOCKS_HEADER.ordinal
-            } else if (position < myStocks.size - 1 + myStocksHeaderCount) {
+            } else if (position <= myStocks.size - 1 + myStocksHeaderCount) {
                 return ViewType.MY_STOCK.ordinal
             }
         }
 
-        val myWatchlistOffset = myStocks.size + myStocksHeaderCount - 1
+        val myWatchlistOffset = myStocks.size + myStocksHeaderCount
         if (myWatchlist.isNotEmpty()) {
             return if (position - myWatchlistOffset == 0) {
                 ViewType.MY_WATCHLIST_HEADER.ordinal
