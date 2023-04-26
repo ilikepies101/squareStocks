@@ -6,8 +6,7 @@ import com.example.stocks.domain.model.Stock
 import com.example.stocks.util.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import retrofit2.HttpException
-import java.io.IOException
+import java.lang.Exception
 import javax.inject.Inject
 
 class StockRepositoryImpl @Inject constructor(
@@ -29,10 +28,9 @@ class StockRepositoryImpl @Inject constructor(
             dao.deleteStocks(remoteStocks.stocks.map { it.ticker })
             dao.insertStocks(remoteStocks.stocks.map { it.toStockEntity() })
 
-        } catch (e: HttpException) {
-            emit(Resource.Error("An http exception occurred", stocks))
-        } catch (e: IOException) {
-            emit(Resource.Error("An exception occurred, please check your internet connection.", stocks))
+        } catch (e: Exception) {
+            emit(Resource.Error(stocks))
+            return@flow
         }
 
         val newStocks = dao.getStocks().map { it.toStock() }

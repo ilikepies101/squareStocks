@@ -13,6 +13,9 @@
     <string name="loading">Getting your funds in order…</string>
     <string name="empty_state_header">Take your portfolio to new heights! 🚀👇</string>
     <string name="empty_state_button">Add new stocks</string>
+    <string name="error_text_no_data">👋 Sorry, we\'re having trouble fetching stock info right now 🛠️📊️</string>
+    <string name="error_text_some_data">🤔 Oops, there seems to be a problem with this stock data. The information displayed may be outdated or incorrect.</string>
+    <string name="retry_button">Try again</string>
 
     <string name="buy">Buy</string>
     <string name="money_wings">💸</string>

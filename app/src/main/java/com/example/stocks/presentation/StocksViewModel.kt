@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.stocks.domain.use_case.GetStocks
 import com.example.stocks.presentation.ui.StocksState
+import com.example.stocks.presentation.ui.ViewState
 import com.example.stocks.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -30,7 +31,7 @@ class StocksViewModel @Inject constructor(
                         _state.value = _state.value.copy(
                             watchList = result.data?.filter { it.quantity == null } ?: emptyList(),
                             stocks = result.data?.filter { it.quantity != null } ?: emptyList(),
-                            isLoading = false
+                            viewState = ViewState.SUCCESS
                         )
                     }
 
@@ -38,7 +39,7 @@ class StocksViewModel @Inject constructor(
                         _state.value = _state.value.copy(
                             watchList = result.data?.filter { it.quantity == null } ?: emptyList(),
                             stocks = result.data?.filter { it.quantity != null } ?: emptyList(),
-                            isLoading = true
+                            viewState = ViewState.LOADING
                         )
                     }
 
@@ -46,7 +47,7 @@ class StocksViewModel @Inject constructor(
                         _state.value = _state.value.copy(
                             watchList = result.data?.filter { it.quantity == null } ?: emptyList(),
                             stocks = result.data?.filter { it.quantity != null } ?: emptyList(),
-                            isLoading = false
+                            viewState = ViewState.ERROR
                         )
                     }
                 }
