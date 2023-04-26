@@ -7,7 +7,6 @@ import com.example.stocks.presentation.ui.StocksState
 import com.example.stocks.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
@@ -29,8 +28,8 @@ class StocksViewModel @Inject constructor(
                 when (result) {
                     is Resource.Success -> {
                         _state.value = _state.value.copy(
-                            watchList = emptyList(), // result.data?.filter { it.quantity == null } ?: emptyList(),
-                            stocks = emptyList(),//result.data?.filter { it.quantity != null } ?: emptyList(),
+                            watchList = result.data?.filter { it.quantity == null } ?: emptyList(),
+                            stocks = result.data?.filter { it.quantity != null } ?: emptyList(),
                             isLoading = false
                         )
                     }

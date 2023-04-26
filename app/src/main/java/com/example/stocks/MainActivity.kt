@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 findViewById<View>(R.id.empty_state).visibility = View.GONE
+                findViewById<RecyclerView>(R.id.stocks).visibility = View.VISIBLE
                 adapter.update(state.stocks, state.watchList)
             }
         }
