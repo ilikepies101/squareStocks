@@ -36,13 +36,11 @@ class ErrorState : Fragment() {
             viewModel.getStocks()
         }
 
-        lifecycleScope.launch(Dispatchers.Main) {
-            viewModel.state.collectLatest { state ->
-                binding?.errorTextDetails?.text = if (state.shouldShowStockList) {
-                     getString(R.string.error_text_some_data)
-                } else {
-                    getString(R.string.error_text_no_data)
-                }
+        viewModel.state.observe(viewLifecycleOwner) { state ->
+            binding?.errorTextDetails?.text = if (state.shouldShowStockList) {
+                 getString(R.string.error_text_some_data)
+            } else {
+                getString(R.string.error_text_no_data)
             }
         }
     }

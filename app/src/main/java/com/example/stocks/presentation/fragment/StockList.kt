@@ -34,11 +34,9 @@ class StockList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding?.stocks?.adapter = adapter
 
-        lifecycleScope.launch(Dispatchers.Main) {
-            viewModel.state.collectLatest { state ->
-                if (state.stocks.isNotEmpty() || state.watchList.isNotEmpty()) {
-                    adapter.update(state.stocks, state.watchList)
-                }
+        viewModel.state.observe(viewLifecycleOwner) { state ->
+            if (state.stocks.isNotEmpty() || state.watchList.isNotEmpty()) {
+                adapter.update(state.stocks, state.watchList)
             }
         }
     }

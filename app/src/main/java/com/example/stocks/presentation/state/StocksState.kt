@@ -9,7 +9,3 @@ data class StocksState(
 ) {
     val shouldShowStockList = stocks.isNotEmpty() || watchList.isNotEmpty()
 }
-
-enum class ViewState {
-    SUCCESS, LOADING, ERROR
-}

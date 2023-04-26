@@ -10,6 +10,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -34,4 +36,7 @@ object ViewModelModule {
             GsonConverterFactory.create()
         ).baseUrl(StockApi.BASE_URL).build().create(StockApi::class.java)
     }
+
+    @Provides
+    fun provideIoDispatcher(): CoroutineDispatcher = Dispatchers.IO
 }

@@ -27,22 +27,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        lifecycleScope.launch(Dispatchers.Main) {
-            viewModel.state.collectLatest { state ->
-                clearFragments()
-                when (state.viewState) {
-                    ViewState.SUCCESS -> {
-                        val content = if (state.shouldShowStockList) StockList() else EmptyState()
-                        replaceContentHost(content)
-                    }
-                    ViewState.LOADING -> {
-                        replaceContentHost(LoadingStocks())
-                    }
-                    ViewState.ERROR -> {
-                        replaceErrorHost(ErrorState())
-                        if (state.shouldShowStockList) {
-                            replaceContentHost(StockList())
-                        }
+        viewModel.state.observe(this) { state ->
+            clearFragments()
+            when (state.viewState) {
+                ViewState.SUCCESS -> {
+                    val content = if (state.shouldShowStockList) StockList() else EmptyState()
+                    replaceContentHost(content)
+                }
+                ViewState.LOADING -> {
+                    replaceContentHost(LoadingStocks())
+                }
+                ViewState.ERROR -> {
+                    replaceErrorHost(ErrorState())
+                    if (state.shouldShowStockList) {
+                        replaceContentHost(StockList())
                     }
                 }
             }
