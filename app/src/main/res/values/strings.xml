@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Stocks</string>
-    <string name="my_stocks">My Stocks</string>
-    <string name="my_watchlist">My Watchlist</string>
+    <string name="my_stocks">My Stocks 📈</string>
+    <string name="my_watchlist">My Watchlist 👀</string>
     <plurals name="shares">
         <item quantity="one">Share</item>
         <item quantity="other">Shares</item>
@@ -10,6 +10,10 @@
     <string name="share_price">💰 Price</string>
     <string name="quantity_label">✨Shares</string>
     <string name="company_details">🏢 Company details</string>
+    <string name="loading">Getting your funds in order…</string>
+    <string name="empty_state_header">Take your portfolio to new heights! 🚀👇</string>
+    <string name="empty_state_button">Add new stocks</string>
 
     <string name="buy">Buy</string>
+    <string name="money_wings">💸</string>
 </resources>

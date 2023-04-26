@@ -6,6 +6,7 @@ import com.example.stocks.domain.use_case.GetStocks
 import com.example.stocks.presentation.ui.StocksState
 import com.example.stocks.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -23,13 +24,13 @@ class StocksViewModel @Inject constructor(
     val state = _state.asStateFlow()
 
     fun getStocks() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             getStocksUseCase().onEach { result ->
                 when (result) {
                     is Resource.Success -> {
                         _state.value = _state.value.copy(
-                            watchList = result.data?.filter { it.quantity == null } ?: emptyList(),
-                            stocks = result.data?.filter { it.quantity != null } ?: emptyList(),
+                            watchList = emptyList(), // result.data?.filter { it.quantity == null } ?: emptyList(),
+                            stocks = emptyList(),//result.data?.filter { it.quantity != null } ?: emptyList(),
                             isLoading = false
                         )
                     }

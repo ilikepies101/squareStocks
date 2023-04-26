@@ -85,14 +85,16 @@ class StockAdapter: RecyclerView.Adapter<ViewHolder>() {
         }
     }
 
-    fun insert(stocks: List<Stock>, watchList: List<Stock>) {
-        myStocks = stocks
-        myWatchlist = watchList
+    fun update(stocks: List<Stock>, watchList: List<Stock>) {
+        if (stocks != myStocks || watchList != myWatchlist) {
+            myStocks = stocks
+            myWatchlist = watchList
 
-        myStocksHeaderCount = if (stocks.isEmpty()) 0 else 1
-        myWatchlistHeaderCount = if (watchList.isEmpty()) 0 else 1
+            myStocksHeaderCount = if (stocks.isEmpty()) 0 else 1
+            myWatchlistHeaderCount = if (watchList.isEmpty()) 0 else 1
 
-        notifyItemRangeInserted(0, stocks.size + myStocksHeaderCount + myWatchlist.size + myWatchlistHeaderCount)
+            notifyDataSetChanged()
+        }
     }
 
     /**
