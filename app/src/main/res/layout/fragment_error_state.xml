@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/error_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/medium_space"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_marginVertical="@dimen/medium_space">
+
+        <TextView
+            android:id="@+id/error_text_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="?attr/colorError"
+            android:textSize="@dimen/medium_text_size"
+            tools:text="Sorry :( "/>
+
+        <Button
+            android:id="@+id/error_retry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_space"
+            android:paddingVertical="@dimen/medium_space"
+            android:text="@string/retry_button"
+            android:textSize="@dimen/large_text_size" />
+
+    </LinearLayout>
+
+</layout>

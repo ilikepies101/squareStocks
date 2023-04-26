@@ -12,12 +12,20 @@ import com.example.stocks.domain.model.Stock
 import com.example.stocks.util.Extensions.toFormattedCurrencyAmount
 import com.example.stocks.util.Extensions.toFormattedDate
 
+/**
+ * Adapter for displaying stock list including stocks that are on
+ * a user's watchlist and a user's owned stocks. Also displays header items
+ * at the top of each section.
+ */
 class StockAdapter: RecyclerView.Adapter<ViewHolder>() {
     private var myStocks: List<Stock> = emptyList()
     private var myWatchlist: List<Stock> = emptyList()
     private var myStocksHeaderCount = 0
     private var myWatchlistHeaderCount = 0
 
+    /**
+     * View holder for stock item
+     */
     inner class StockViewHolder(itemBinding: StockItemBinding) : ViewHolder(itemBinding.root) {
         val quantity = itemBinding.quantity
         val quantityGroup = itemBinding.quantityGroup
@@ -27,10 +35,16 @@ class StockAdapter: RecyclerView.Adapter<ViewHolder>() {
         val timeStamp = itemBinding.timestamp
     }
 
+    /**
+     * View holder for header of "My Stocks" section of list
+     */
     inner class MyStocksHeaderViewHolder(itemBinding: HeaderItemBinding) : ViewHolder(itemBinding.root) {
         val header = itemBinding.headerTitle
     }
 
+    /**
+     * View holder for header of "My Watchlist" section of list
+     */
     inner class MyWatchlistHeaderViewHolder(itemBinding: HeaderItemBinding) : ViewHolder(itemBinding.root) {
         val header = itemBinding.headerTitle
     }
@@ -49,6 +63,9 @@ class StockAdapter: RecyclerView.Adapter<ViewHolder>() {
         }
     }
 
+    /**
+     * Account for items of stocks, watchlist, and header items if needed.
+     */
     override fun getItemCount() =
         myStocks.size + myWatchlist.size + myStocksHeaderCount + myWatchlistHeaderCount
 
@@ -85,6 +102,9 @@ class StockAdapter: RecyclerView.Adapter<ViewHolder>() {
         }
     }
 
+    /**
+     * Completely refresh list if any of the items in the list are different.
+     */
     fun update(stocks: List<Stock>, watchList: List<Stock>) {
         if (stocks != myStocks || watchList != myWatchlist) {
             myStocks = stocks
@@ -98,11 +118,12 @@ class StockAdapter: RecyclerView.Adapter<ViewHolder>() {
     }
 
     /**
-     * Order should be
+     * Order of the list should be
      * MY_STOCKS_HEADER
      * MY_STOCKS
      * MY_WATCHLIST_HEADER
      * MY_WATCHLIST
+     * assuming there are watchlist items and stock items
      */
     override fun getItemViewType(position: Int): Int {
         if (myStocks.isNotEmpty()) {

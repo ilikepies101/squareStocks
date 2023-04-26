@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@+id/empty_state"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/large_space"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/empty_state_header"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="@dimen/large_text_size" />
+
+        <Button
+            android:id="@+id/add_new_stocks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_space"
+            android:paddingVertical="@dimen/medium_space"
+            android:text="@string/empty_state_button"
+            android:textSize="@dimen/large_text_size" />
+
+    </LinearLayout>
+
+</layout>

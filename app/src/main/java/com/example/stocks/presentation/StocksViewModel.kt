@@ -3,8 +3,8 @@ package com.example.stocks.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.stocks.domain.use_case.GetStocks
-import com.example.stocks.presentation.ui.StocksState
-import com.example.stocks.presentation.ui.ViewState
+import com.example.stocks.presentation.state.StocksState
+import com.example.stocks.presentation.state.ViewState
 import com.example.stocks.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
