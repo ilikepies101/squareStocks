@@ -12,7 +12,7 @@ interface StockDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertStocks(list: List<StockEntity>)
 
-    @Query("DELETE FROM stockentity where ticker in (:tickers)")
+    @Query("DELETE FROM stockentity where ticker not in (:tickers)")
     suspend fun deleteStocks(tickers: List<String>)
 
     @Query("SELECT * FROM stockentity")
