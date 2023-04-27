@@ -5,7 +5,7 @@ import com.example.stocks.domain.model.Stock
 import com.example.stocks.domain.repository.StockRepository
 import com.example.stocks.domain.use_case.GetStocks
 import com.example.stocks.presentation.StocksViewModel
-import com.example.stocks.presentation.state.ViewState
+import com.example.stocks.presentation.state.StocksViewState
 import com.example.stocks.util.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -41,7 +41,7 @@ class StocksViewModelTest {
         viewModel.state.value?.run {
             assert(stocks.isEmpty())
             assert(watchList.isEmpty())
-            assert(ViewState.SUCCESS.ordinal == viewState.ordinal)
+            assert(StocksViewState.SUCCESS.ordinal == stocksViewState.ordinal)
         } ?: fail("Stocks state was null")
     }
 
@@ -64,7 +64,7 @@ class StocksViewModelTest {
         viewModel.state.value?.run {
             assert(stocks.isEmpty())
             assert(watchList == watchlistStocks)
-            assert(ViewState.SUCCESS.ordinal == viewState.ordinal)
+            assert(StocksViewState.SUCCESS.ordinal == stocksViewState.ordinal)
         } ?: fail("Stocks state was null")
     }
 
@@ -87,7 +87,7 @@ class StocksViewModelTest {
         viewModel.state.value?.run {
             assert(stocks == stocksList)
             assert(watchList.isEmpty())
-            assert(ViewState.SUCCESS.ordinal == viewState.ordinal)
+            assert(StocksViewState.SUCCESS.ordinal == stocksViewState.ordinal)
         } ?: fail("Stocks state was null")
     }
 
@@ -115,7 +115,7 @@ class StocksViewModelTest {
         viewModel.state.value?.run {
             assert(stocks == stocksList)
             assert(watchList == watchlistStocks)
-            assert(ViewState.SUCCESS.ordinal == viewState.ordinal)
+            assert(StocksViewState.SUCCESS.ordinal == stocksViewState.ordinal)
         } ?: fail("Stocks state was null")
     }
 
@@ -133,7 +133,7 @@ class StocksViewModelTest {
         viewModel.state.value?.run {
             assert(stocks.isEmpty())
             assert(watchList.isEmpty())
-            assert(ViewState.LOADING.ordinal == viewState.ordinal)
+            assert(StocksViewState.LOADING.ordinal == stocksViewState.ordinal)
         } ?: fail("Stocks state was null")
     }
 
@@ -156,7 +156,7 @@ class StocksViewModelTest {
         viewModel.state.value?.run {
             assert(stocks.isEmpty())
             assert(watchList == watchlistStocks)
-            assert(ViewState.LOADING.ordinal == viewState.ordinal)
+            assert(StocksViewState.LOADING.ordinal == stocksViewState.ordinal)
         } ?: fail("Stocks state was null")
     }
 
@@ -179,7 +179,7 @@ class StocksViewModelTest {
         viewModel.state.value?.run {
             assert(stocks == stocksList)
             assert(watchList.isEmpty())
-            assert(ViewState.LOADING.ordinal == viewState.ordinal)
+            assert(StocksViewState.LOADING.ordinal == stocksViewState.ordinal)
         } ?: fail("Stocks state was null")
     }
 
@@ -207,7 +207,7 @@ class StocksViewModelTest {
         viewModel.state.value?.run {
             assert(stocks == stocksList)
             assert(watchList == watchlistStocks)
-            assert(ViewState.LOADING.ordinal == viewState.ordinal)
+            assert(StocksViewState.LOADING.ordinal == stocksViewState.ordinal)
         } ?: fail("Stocks state was null")
     }
 
@@ -225,7 +225,7 @@ class StocksViewModelTest {
         viewModel.state.value?.run {
             assert(stocks.isEmpty())
             assert(watchList.isEmpty())
-            assert(ViewState.ERROR.ordinal == viewState.ordinal)
+            assert(StocksViewState.ERROR.ordinal == stocksViewState.ordinal)
         } ?: fail("Stocks state was null")
     }
 
@@ -248,7 +248,7 @@ class StocksViewModelTest {
         viewModel.state.value?.run {
             assert(stocks.isEmpty())
             assert(watchList == watchlistStocks)
-            assert(ViewState.ERROR.ordinal == viewState.ordinal)
+            assert(StocksViewState.ERROR.ordinal == stocksViewState.ordinal)
         } ?: fail("Stocks state was null")
     }
 
@@ -271,7 +271,7 @@ class StocksViewModelTest {
         viewModel.state.value?.run {
             assert(stocks == stocksList)
             assert(watchList.isEmpty())
-            assert(ViewState.ERROR.ordinal == viewState.ordinal)
+            assert(StocksViewState.ERROR.ordinal == stocksViewState.ordinal)
         } ?: fail("Stocks state was null")
     }
 
@@ -299,7 +299,7 @@ class StocksViewModelTest {
         viewModel.state.value?.run {
             assert(stocks == stocksList)
             assert(watchList == watchlistStocks)
-            assert(ViewState.ERROR.ordinal == viewState.ordinal)
+            assert(StocksViewState.ERROR.ordinal == stocksViewState.ordinal)
         } ?: fail("Stocks state was null")
     }
 }

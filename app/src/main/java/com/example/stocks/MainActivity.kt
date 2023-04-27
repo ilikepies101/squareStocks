@@ -4,18 +4,12 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.lifecycleScope
 import com.example.stocks.presentation.StocksViewModel
 import com.example.stocks.presentation.fragment.EmptyState
 import com.example.stocks.presentation.fragment.ErrorState
-import com.example.stocks.presentation.fragment.LoadingStocks
 import com.example.stocks.presentation.fragment.StockList
-import com.example.stocks.presentation.state.ViewState
+import com.example.stocks.presentation.state.StocksViewState
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -29,15 +23,15 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.state.observe(this) { state ->
             clearFragments()
-            when (state.viewState) {
-                ViewState.SUCCESS -> {
+            when (state.stocksViewState) {
+                StocksViewState.SUCCESS -> {
                     val content = if (state.shouldShowStockList) StockList() else EmptyState()
                     replaceContentHost(content)
                 }
-                ViewState.LOADING -> {
-                    replaceContentHost(LoadingStocks())
+                StocksViewState.LOADING -> {
+                    replaceContentHost(StockList())
                 }
-                ViewState.ERROR -> {
+                StocksViewState.ERROR -> {
                     replaceErrorHost(ErrorState())
                     if (state.shouldShowStockList) {
                         replaceContentHost(StockList())

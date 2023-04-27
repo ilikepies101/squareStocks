@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.stocks.domain.model.Stock
 import com.example.stocks.domain.use_case.GetStocks
 import com.example.stocks.presentation.state.StocksState
-import com.example.stocks.presentation.state.ViewState
+import com.example.stocks.presentation.state.StocksViewState
 import com.example.stocks.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
@@ -33,7 +33,7 @@ class StocksViewModel @Inject constructor(
                         _state.postValue(StocksState(
                             watchList = fetchWatchlist(result),
                             stocks = fetchStockList(result),
-                            viewState = ViewState.SUCCESS
+                            stocksViewState = StocksViewState.SUCCESS
                         ))
                     }
 
@@ -41,7 +41,7 @@ class StocksViewModel @Inject constructor(
                         _state.postValue(StocksState(
                             watchList = fetchWatchlist(result),
                             stocks = fetchStockList(result),
-                            viewState = ViewState.LOADING
+                            stocksViewState = StocksViewState.LOADING
                         ))
                     }
 
@@ -49,7 +49,7 @@ class StocksViewModel @Inject constructor(
                         _state.postValue(StocksState(
                             watchList = fetchWatchlist(result),
                             stocks = fetchStockList(result),
-                            viewState = ViewState.ERROR
+                            stocksViewState = StocksViewState.ERROR
                         ))
                     }
                 }

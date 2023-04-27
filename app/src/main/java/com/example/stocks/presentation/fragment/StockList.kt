@@ -6,13 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import com.example.stocks.databinding.FragmentStockListBinding
 import com.example.stocks.presentation.StocksViewModel
 import com.example.stocks.presentation.adapter.StockAdapter
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
+import com.example.stocks.presentation.state.StocksViewState
 
 /**
  * Stock list fragment that displays any stocks on the users watchlist
@@ -35,9 +32,12 @@ class StockList : Fragment() {
         binding?.stocks?.adapter = adapter
 
         viewModel.state.observe(viewLifecycleOwner) { state ->
-            if (state.stocks.isNotEmpty() || state.watchList.isNotEmpty()) {
-                adapter.update(state.stocks, state.watchList)
-            }
+            binding?.loading?.visibility = if (state.stocksViewState == StocksViewState.LOADING) {
+                View.VISIBLE
+            } else View.GONE
+
+            binding?.stocks?.visibility = if (state.shouldShowStockList) View.VISIBLE else View.GONE
+            adapter.update(state.stocks, state.watchList)
         }
     }
 

@@ -16,17 +16,14 @@ class StockRepositoryImpl @Inject constructor(
 
     /**
      * Fetch stocks, emitting Resource entities representing the status of the call.
-     * Note: Return cached stocks if we encounter an exception when fetching from the api.
+     * Note: Return cached stocks when loading and if we encounter an exception when fetching from the api.
      */
     override fun getStocks(): Flow<Resource<List<Stock>>> = flow {
         emit(Resource.Loading())
-
         val stocks = dao.getStocks().map {
             it.toStock()
         }
-
         emit(Resource.Loading(stocks))
-
         try {
             val remoteStocks = api.getStocks()
             dao.deleteStocks(remoteStocks.stocks.map { it.ticker })
